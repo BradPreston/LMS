@@ -12,5 +12,6 @@ export async function BookRoutes(
 	const books = bookController(service);
 	app.get(`${baseRoute}/`, books.getAllBooks);
 	app.get(`${baseRoute}/:id`, books.getOneBook);
+	app.post(`${baseRoute}/`, books.insertOneBook);
 	return app;
 }
