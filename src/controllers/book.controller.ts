@@ -41,7 +41,7 @@ export function bookController(service: BookService) {
 	};
 
 	return {
-		getAllBooks: getAllBooks,
-		getOneBook: getOneBook
+		getAllBooks,
+		getOneBook
 	};
 }
