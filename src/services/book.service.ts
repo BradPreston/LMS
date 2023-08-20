@@ -18,7 +18,21 @@ export class BookService implements ILibrary<Book> {
 
 		return books;
 	}
-	getOne(id: string): Promise<Book> {
-		throw new Error('Method not implemented.');
+	async getOne(id: string): Promise<Book> {
+		const numID: number = parseInt(id, 10);
+
+		if (Number.isNaN(numID)) {
+			throw new TypeError('Id must be a number.');
+		}
+
+		const book: Book = await this.client.book.findFirst({
+			where: { id: numID }
+		});
+
+		if (!book) {
+			throw new ReferenceError(`No book with id "${numID}" was found.`);
+		}
+
+		return book;
 	}
 }
