@@ -35,4 +35,8 @@ export class BookService implements ILibrary<Book> {
 
 		return book;
 	}
+	async insertOne(data: Book): Promise<Book> {
+		const book: Book = await this.client.book.create({ data });
+		return book;
+	}
 }
