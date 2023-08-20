@@ -1,7 +1,7 @@
 import { Express } from 'express';
 import { Client } from '../models/client';
 import { BookService } from '../services/book.service';
-import { bookController } from '../controllers/bookControllerFunc';
+import { bookController } from '../controllers/book.controller';
 
 export async function BookRoutes(
 	baseRoute: string,
