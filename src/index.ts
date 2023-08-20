@@ -4,6 +4,8 @@ import { router } from './routes/router';
 const app = express();
 const client = new Client();
 
+app.use(express.json());
+
 router(app, client);
 
 app.listen(3000, () => {
