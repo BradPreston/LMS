@@ -11,5 +11,6 @@ export async function BookRoutes(
 	const service = new BookService(client);
 	const books = bookController(service);
 	app.get(`${baseRoute}/`, books.getAllBooks);
+	app.get(`${baseRoute}/:id`, books.getOneBook);
 	return app;
 }
