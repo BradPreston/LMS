@@ -7,7 +7,7 @@ export function bookController(service: BookService) {
 		try {
 			const books: Book[] = await service.getAll();
 			res.status(200);
-			res.json({ books });
+			res.json(books);
 		} catch (err) {
 			if (err instanceof ReferenceError) {
 				res.status(404);
@@ -23,7 +23,7 @@ export function bookController(service: BookService) {
 		try {
 			const book: Book = await service.getOne(req.params.id);
 			res.status(200);
-			res.json({ book });
+			res.json(book);
 		} catch (err) {
 			if (err instanceof ReferenceError) {
 				res.status(404);
@@ -40,8 +40,20 @@ export function bookController(service: BookService) {
 		}
 	};
 
+	const insertOneBook = async (req: Request, res: Response) => {
+		try {
+			const book: Book = await service.insertOne(req.body);
+			res.status(201);
+			res.json(book);
+		} catch (err) {
+			res.status(400);
+			res.json({ error: err.message });
+		}
+	};
+
 	return {
 		getAllBooks,
-		getOneBook
+		getOneBook,
+		insertOneBook
 	};
 }
