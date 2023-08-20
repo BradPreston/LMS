@@ -1,7 +1,7 @@
 import { Express } from 'express';
 import { Client } from '../models/client';
 import { BookService } from '../services/book.service';
-import { BookController } from '../controllers/book.controller';
+import { bookController } from '../controllers/bookControllerFunc';
 
 export async function BookRoutes(
 	baseRoute: string,
@@ -9,7 +9,7 @@ export async function BookRoutes(
 	client: Client
 ) {
 	const service = new BookService(client);
-	const books = new BookController(service);
+	const books = bookController(service);
 	app.get(`${baseRoute}/`, books.getAllBooks);
 	return app;
 }
