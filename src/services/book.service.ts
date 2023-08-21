@@ -68,4 +68,24 @@ export class BookService implements ILibrary<Book> {
 
 		return updatedBook;
 	}
+	// TODO: only delete book if there is no loan out on that book
+	async deleteOne(id: string): Promise<void> {
+		const numID: number = parseInt(id, 10);
+
+		if (Number.isNaN(numID)) {
+			throw new TypeError('Id must be a number.');
+		}
+
+		const foundBook: Book | null = await this.client.book.findFirst({
+			where: { id: numID }
+		});
+
+		if (!foundBook) {
+			throw new ReferenceError(`No book with id "${numID}" was found.`);
+		}
+
+		await this.client.book.delete({
+			where: { id: numID }
+		});
+	}
 }

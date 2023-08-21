@@ -72,10 +72,31 @@ export function bookController(service: BookService) {
 		}
 	};
 
+	const deleteBook = async (req: Request, res: Response) => {
+		try {
+			await service.deleteOne(req.params.id);
+			res.status(204);
+		} catch (err) {
+			if (err instanceof ReferenceError) {
+				res.status(404);
+				res.json({ error: err.message });
+				return;
+			}
+			if (err instanceof TypeError) {
+				res.status(400);
+				res.json({ error: err.message });
+				return;
+			}
+			res.status(500);
+			res.json({ error: 'Something went wrong.' });
+		}
+	};
+
 	return {
 		getAllBooks,
 		getOneBook,
 		insertOneBook,
-		updateBook
+		updateBook,
+		deleteBook
 	};
 }
