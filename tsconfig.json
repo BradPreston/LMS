@@ -9,14 +9,16 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*.ts",
-    "tests/**/*.ts",
+    "__tests__/**/*.ts",
     "index.js"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "__tests__/unit/config/**/*.ts"
   ]
 }
