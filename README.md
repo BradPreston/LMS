@@ -13,5 +13,5 @@ Please let me know of any design issues or bad practice. This is strictly for my
 ---
 
 ### Issues
-- GET localhost:3000/books 404 - { "error": "Cannot read properties of undefined (reading 'service')" }
+- SOLVED: GET localhost:3000/books 404 - { "error": "Cannot read properties of undefined (reading 'service')" }
 		- I'm told that service is undefined in src/controllers/book.controller.ts and I can't figure out why. In src/routes/book.routes.ts, I'm creating a new BookService by passing client in and creating a new BookController by passing that service in.
