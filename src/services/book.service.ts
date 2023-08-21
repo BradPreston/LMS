@@ -25,7 +25,7 @@ export class BookService implements ILibrary<Book> {
 			throw new TypeError('Id must be a number.');
 		}
 
-		const book: Book = await this.client.book.findFirst({
+		const book: Book = await this.client.book.findFirstOrThrow({
 			where: { id: numID }
 		});
 
