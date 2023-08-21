@@ -1,17 +1,17 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const Books = require('./data/books');
+import { map } from './data/books';
 
-const Borrowers = require('./data/borrowers');
+import { map as _map } from './data/borrowers';
 
-const Loans = require('./data/loans');
+import { map as __map } from './data/loans';
 
 async function runSeeders() {
 	// Books
 	await Promise.all(
-		Books.map(async (book) =>
+		map(async (book) =>
 			prisma.book.upsert({
 				where: { id: book.id },
 
@@ -24,7 +24,7 @@ async function runSeeders() {
 
 	// Borrowers
 	await Promise.all(
-		Borrowers.map(async (borrower) =>
+		_map(async (borrower) =>
 			prisma.borrower.upsert({
 				where: { id: borrower.id },
 
@@ -37,7 +37,7 @@ async function runSeeders() {
 
 	// Loans
 	await Promise.all(
-		Loans.map(async (loan) =>
+		__map(async (loan) =>
 			prisma.loan.upsert({
 				where: { id: loan.id },
 
