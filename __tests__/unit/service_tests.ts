@@ -44,7 +44,7 @@ describe('Book Service', () => {
 	});
 
 	it('should find one book', async () => {
-		const book = {
+		const book: Book = {
 			id: 1,
 			title: 'Test Title',
 			author: 'Test Author',
