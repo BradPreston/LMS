@@ -13,5 +13,6 @@ export async function BookRoutes(
 	app.get(`${baseRoute}/`, books.getAllBooks);
 	app.get(`${baseRoute}/:id`, books.getOneBook);
 	app.post(`${baseRoute}/`, books.insertOneBook);
+	app.put(`${baseRoute}/:id`, books.updateBook);
 	return app;
 }

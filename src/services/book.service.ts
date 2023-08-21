@@ -1,6 +1,7 @@
-import type { Book } from '@prisma/client';
+import { Book } from '@prisma/client';
 import { ILibrary } from '../models/library.interface';
 import { Client } from '../models/client';
+import { validateBook } from '../utils/validations/validateBook';
 
 export class BookService implements ILibrary<Book> {
 	private client: Client;
@@ -25,7 +26,7 @@ export class BookService implements ILibrary<Book> {
 			throw new TypeError('Id must be a number.');
 		}
 
-		const book: Book = await this.client.book.findFirstOrThrow({
+		const book: Book | null = await this.client.book.findFirst({
 			where: { id: numID }
 		});
 
@@ -38,5 +39,33 @@ export class BookService implements ILibrary<Book> {
 	async insertOne(data: Book): Promise<Book> {
 		const book: Book = await this.client.book.create({ data });
 		return book;
+	}
+	async updateOne(id: string, book: Book): Promise<Book> {
+		const numID: number = parseInt(id, 10);
+
+		if (Number.isNaN(numID)) {
+			throw new TypeError('Id must be a number.');
+		}
+
+		const foundBook: Book | null = await this.client.book.findFirst({
+			where: { id: numID }
+		});
+
+		if (!foundBook) {
+			throw new ReferenceError(`No book with id "${numID}" was found.`);
+		}
+
+		const isValidBook = validateBook(book);
+
+		if (!isValidBook.valid) {
+			throw new TypeError(isValidBook.errors[0]);
+		}
+
+		const updatedBook: Book = await this.client.book.update({
+			where: { id: numID },
+			data: book
+		});
+
+		return updatedBook;
 	}
 }
