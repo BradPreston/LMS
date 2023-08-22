@@ -31,7 +31,7 @@ Please let me know of any design issues or bad practice. This is strictly for my
 1. ``` npx prisma db seed -- --environment development ``` to seed the database with some values
 
 #### Run the project
-1. ``` npm run dev```
+1. ``` npm run dev ```
 
 
 ---
