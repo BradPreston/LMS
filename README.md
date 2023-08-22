@@ -12,6 +12,35 @@ Please let me know of any design issues or bad practice. This is strictly for my
 
 ---
 
+### How to run the project
+#### Prerequisites:
+1. Must have PostgreSQL installed
+2. Must have a database called: library
+
+#### Create an env file
+1. Copy the .env.example file and call it .env.development
+2. Put your PostgreSQL connection string in the DATABASE_URL field
+3. *optional* - Add a port in the PORT field. (defaults to 3000 otherwise)
+
+#### Install dependencies and migrate
+
+1. ``` npm install ``` to install dependencies
+2. ``` npx prisma migrate dev --name init ``` to create the tables in the database
+
+#### Seed the database
+1. ``` npx prisma db seed -- --environment development ``` to seed the database with some values
+
+#### Run the project
+1. ``` npm run dev```
+
+
+---
+
+### Todo
+- Add Docker to streamline building and running
+
+---
+
 ### Issues
 - SOLVED: GET localhost:3000/books 404 - { "error": "Cannot read properties of undefined (reading 'service')" }
 		- I'm told that service is undefined in src/controllers/book.controller.ts and I can't figure out why. In src/routes/book.routes.ts, I'm creating a new BookService by passing client in and creating a new BookController by passing that service in.
