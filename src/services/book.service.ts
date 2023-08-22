@@ -37,6 +37,12 @@ export class BookService implements ILibrary<Book> {
 		return book;
 	}
 	async insertOne(data: Book): Promise<Book> {
+		const isValidBook = validateBook(data);
+
+		if (!isValidBook.valid) {
+			throw new TypeError(isValidBook.errors[0]);
+		}
+
 		const book: Book = await this.client.book.create({ data });
 		return book;
 	}
