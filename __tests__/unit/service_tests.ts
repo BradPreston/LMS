@@ -106,10 +106,11 @@ describe('Book Service', () => {
 	});
 
 	it("shouldn't create a book with bad data", async () => {
-		const book = {
+		const book: Book = {
 			title: 'Test Title',
 			author: 'Test Author',
 			publisher: 'Test Publisher',
+            // @ts-ignore
 			isbn: 1234567890,
 			publication_year: 2023,
 			number_of_pages: 350,
@@ -123,4 +124,21 @@ describe('Book Service', () => {
 			new TypeError('isbn must be a string.')
 		);
 	});
+
+    it("should update a book with good data", async () => {
+		const book: Book = {
+            id: 1,
+			title: 'Test Title',
+			author: 'Test Author',
+			publisher: 'Test Publisher',
+			isbn: "1234567890",
+			publication_year: 2023,
+			number_of_pages: 350,
+			available_copies: 2
+		};
+
+        prismaMock.book.create.mockResolvedValue(book)
+
+        await expect(service.updateOne("1", book)).resolves.toEqual(book)
+    })
 });
