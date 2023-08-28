@@ -110,7 +110,7 @@ describe('Book Service', () => {
 			title: 'Test Title',
 			author: 'Test Author',
 			publisher: 'Test Publisher',
-            // @ts-ignore
+			// @ts-ignore
 			isbn: 1234567890,
 			publication_year: 2023,
 			number_of_pages: 350,
@@ -125,20 +125,20 @@ describe('Book Service', () => {
 		);
 	});
 
-    it("should update a book with good data", async () => {
+	it('should update a book with good data', async () => {
 		const book: Book = {
-            id: 1,
+			id: 1,
 			title: 'Test Title',
 			author: 'Test Author',
 			publisher: 'Test Publisher',
-			isbn: "1234567890",
+			isbn: '1234567890',
 			publication_year: 2023,
 			number_of_pages: 350,
 			available_copies: 2
 		};
 
-        prismaMock.book.create.mockResolvedValue(book)
+		prismaMock.book.create.mockResolvedValue(book);
 
-        await expect(service.updateOne("1", book)).resolves.toEqual(book)
-    })
+		await expect(service.updateOne('1', book)).resolves.toEqual(book);
+	});
 });
