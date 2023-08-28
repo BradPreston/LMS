@@ -1,5 +1,5 @@
 import { Book } from '@prisma/client';
-import { prismaMock } from './config/singleton';
+import { prismaMock } from '../../config/tests/singleton';
 import { BookService } from '../../src/services/book.service';
 
 describe('Book Service', () => {
