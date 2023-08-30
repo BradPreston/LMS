@@ -126,7 +126,7 @@ describe('Book Service', () => {
 	});
 
 	it('should update a book with good data', async () => {
-		prismaMock.book.findFirst.mockResolvedValueOnce({
+		const bookBeforeUpdate: Book = {
 			id: 1,
 			title: 'Test Title',
 			author: 'Test Author',
@@ -135,9 +135,11 @@ describe('Book Service', () => {
 			publication_year: 2023,
 			number_of_pages: 350,
 			available_copies: 2
-		});
+		};
 
-		const book: Book = {
+		prismaMock.book.findFirst.mockResolvedValueOnce(bookBeforeUpdate);
+
+		const bookAfterUpdate: Book = {
 			id: 1,
 			title: 'Test Title UPDATED',
 			author: 'Test Author UPDATED',
@@ -148,8 +150,10 @@ describe('Book Service', () => {
 			available_copies: 2
 		};
 
-		prismaMock.book.update.mockResolvedValueOnce(book);
+		prismaMock.book.update.mockResolvedValueOnce(bookAfterUpdate);
 
-		await expect(service.updateOne('1', book)).resolves.toEqual(book);
+		await expect(service.updateOne('1', bookAfterUpdate)).resolves.toEqual(
+			bookAfterUpdate
+		);
 	});
 });
