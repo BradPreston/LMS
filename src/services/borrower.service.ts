@@ -9,8 +9,14 @@ export class BorrowerService implements ILibrary<Borrower> {
 		this.client = client;
 	}
 
-	getAll(): Promise<Borrower[]> {
-		throw new Error('Method not implemented.');
+	async getAll(): Promise<Borrower[]> {
+		const borrowers: Borrower[] = await this.client.borrower.findMany();
+
+		if (borrowers.length === 0) {
+			throw new ReferenceError('No borrowers were found.');
+		}
+
+		return borrowers;
 	}
 	getOne(id: string): Promise<Borrower> {
 		throw new Error('Method not implemented.');
