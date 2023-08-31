@@ -85,4 +85,4 @@ Please let me know of any design issues or bad practice. This is strictly for my
 
 ### Issues
 
-- Testing the update service always returns "No book with id "1" was found". The update service is expecting an id and a body to update with. While using mocking with Jest, I'm unable to pass an ID to the update method because the mock doesn't have any data already saved.
+- (SOLVED) Testing the update service always returns "No book with id "1" was found". The update service is expecting an id and a body to update with. While using mocking with Jest, I'm unable to pass an ID to the update method because the mock doesn't have any data already saved.
