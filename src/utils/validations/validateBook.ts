@@ -20,10 +20,10 @@ export function validateBook(book: Book): ValidationError {
 		errors.push('isbn must be a string.');
 	}
 	if (book.publication_year && typeof book.publication_year !== 'number') {
-		errors.push('publication_year must be a number');
+		errors.push('publication_year must be a number.');
 	}
 	if (book.number_of_pages && typeof book.number_of_pages !== 'number') {
-		errors.push('number_of_pages must be a number');
+		errors.push('number_of_pages must be a number.');
 	}
 	if (book.available_copies && typeof book.available_copies !== 'number') {
 		errors.push('available_copies must be a number.');
