@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "NODE_ENV=development npx ts-node src/index.ts",
     "seed": "prisma db push && node prisma/seed/index.js",
-    "test": "npx jest ./__tests__"
+    "test": "npx jest --verbose",
+    "test:coverage": "npx jest --coverage"
   },
   "keywords": [],
   "author": "",
