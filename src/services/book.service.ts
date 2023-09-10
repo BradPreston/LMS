@@ -1,7 +1,7 @@
 import { Book } from '@prisma/client';
-import { ILibrary } from '../models/library.interface';
-import { Client } from '../models/client';
-import { validateBook } from '../utils/validations/validateBook';
+import { ILibrary } from '../models/library.interface.js';
+import { Client } from '../models/client.js';
+import { validateBook } from '../utils/validations/validateBook.js';
 
 export class BookService implements ILibrary<Book> {
 	private client: Client;

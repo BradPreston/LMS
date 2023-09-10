@@ -2,23 +2,29 @@
   "compilerOptions": {
     "lib": ["es2018"],
     "target": "es2018",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "outDir": "./build",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": "./src"
   },
   "include": [
     "src/**/*.ts",
     "__tests__/**/*.ts",
-    "index.js"
+    "index.js",
+    "prisma/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "__tests__/unit/config/**/*.ts"
-  ]
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

@@ -1,4 +1,4 @@
-module.exports = [
+const books = [
 	{
 		id: 1,
 		title: 'Humble Pi',
@@ -30,3 +30,5 @@ module.exports = [
 		available_copies: 2
 	}
 ];
+
+export default books;

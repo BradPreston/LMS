@@ -1,6 +1,6 @@
 import express from 'express';
-import { Client } from './models/client';
-import { router } from './routes/router';
+import { Client } from './models/client.js';
+import { router } from './routes/router.js';
 import dotenv from 'dotenv';
 import { exit } from 'process';
 

@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+      - ./nodemon.json:/home/node/app/nodemon.json
+    container_name: library-api
+    expose: 
+      - '3000'
+    ports:
+      - '3000:3000'
+    command: npm run dev:migrate
+    depends_on:
+      postgres:
+        condition: service_healthy
+    links:
+      - postgres
+    environment:
+      - DATABASE_URL=postgres://postgres:pass@postgres:5432/library
+      - PORT=3000
+
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=library
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 30s
+      retries: 5
+      start_period: 30s

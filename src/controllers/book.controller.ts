@@ -1,6 +1,6 @@
 import { Book } from '@prisma/client';
 import { Request, Response } from 'express';
-import { BookService } from '../services/book.service';
+import { BookService } from '../services/book.service.js';
 
 export function bookController(service: BookService) {
 	const getAllBooks = async (_req: Request, res: Response) => {

@@ -1,4 +1,4 @@
-module.exports = [
+const loans = [
 	{
 		id: 1,
 		book_id: 2,
@@ -9,3 +9,5 @@ module.exports = [
 		status: 'borrowed'
 	}
 ];
+
+export default loans;

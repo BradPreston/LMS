@@ -1,4 +1,4 @@
-module.exports = [
+const borrowers = [
 	{
 		id: 1,
 		name: 'Test User',
@@ -7,3 +7,5 @@ module.exports = [
 		email: 'test.user@fake.com'
 	}
 ];
+
+export default borrowers;
